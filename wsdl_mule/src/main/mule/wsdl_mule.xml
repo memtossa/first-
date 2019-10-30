@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:wsc="http://www.mulesoft.org/schema/mule/wsc" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/wsc http://www.mulesoft.org/schema/mule/wsc/current/mule-wsc.xsd">
+	<wsc:config name="Web_Service_Consumer_Config" doc:name="Web Service Consumer Config" doc:id="62306241-0113-4f1e-9fa5-d5e9d91e3f98" >
+		<wsc:connection wsdlLocation="http://mu.mulesoft-training.com/essentials/delta?wsdl" service="TicketServiceService" port="TicketServicePort" />
+	</wsc:config>
+	<flow name="wsdl_muleFlow1" doc:id="bbcdbe56-36b2-41ac-b676-6a2d618bc863" >
+		<http:listener doc:name="Listener" doc:id="d140bb3b-da1c-43d2-8a06-2a05c4f4e398" config-ref="api-httpListenerConfig" path="/american"/>
+		<set-variable value="" doc:name="Set Variable" doc:id="4d12728f-b575-41a3-941f-c0bacc0c023b" variableName="qp"/>
+		<wsc:consume operation="findFlight" doc:name="Consume" doc:id="16f45fc8-4cf6-4b28-b9d8-f00a77333241" config-ref="Web_Service_Consumer_Config"/>
+	</flow>
+</mule>
